@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cargo init:*)",
+      "Bash(where cargo:*)",
+      "Bash($HOME/.cargo/bin/cargo run --release)",
+      "Bash(cargo run:*)",
+      "Bash(cargo build:*)",
+      "Bash(mkdir:*)",
+      "Bash(timeout 3 cargo run:*)",
+      "Bash(cargo search:*)",
+      "Bash(python3:*)",
+      "Bash(timeout 15 cargo run:*)",
+      "Bash(timeout 12 cargo run:*)",
+      "Bash(timeout 20 cargo run:*)",
+      "Bash(timeout 25 cargo run:*)",
+      "Bash(cargo clean:*)",
+      "Bash(timeout 30 cargo run:*)",
+      "Bash(git add:*)",
+      "Bash(git reset:*)",
+      "Bash(git rm:*)"
+    ]
+  }
+}

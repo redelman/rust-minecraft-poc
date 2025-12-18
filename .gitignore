@@ -1,0 +1,28 @@
+# Rust
+/target
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Bevy dynamic linking
+*.dylib
+*.so
+*.dll
+
+# Screenshots
+screenshots/
+
+# Minecraft texture assets (must be provided by user)
+assets/mods/core/textures/atlas.png
+assets/mods/core/textures/icons.png

@@ -1,0 +1,29 @@
+[package]
+name = "voxelcraft"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Bevy game engine - configured to use Vulkan backend for multi-platform support
+bevy = { version = "0.15", features = ["dynamic_linking"] }
+
+# Noise generation for procedural textures
+noise = "0.9"
+
+# Additional utilities
+rand = "0.8"
+futures-lite = "2.1"
+image = "0.25.9"
+
+# Clipboard support for screenshots (optional feature)
+arboard = { version = "3.4", optional = true }
+
+[features]
+default = ["clipboard"]
+clipboard = ["arboard"]
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
