@@ -253,6 +253,14 @@ fn setup(
             hdr: true, // Enable HDR for bloom
             ..default()
         },
+        // Bevy uses reversed infinite Z-buffer by default for good depth precision
+        // Extend far plane for voxel worlds with large view distances
+        Projection::Perspective(PerspectiveProjection {
+            fov: std::f32::consts::FRAC_PI_4, // 45 degrees FOV
+            near: 0.1,
+            far: 2000.0,
+            ..default()
+        }),
         Transform::from_xyz(spawn_x as f32, spawn_y, spawn_z as f32),
         CameraController::default(),
         Tonemapping::TonyMcMapface, // Good tonemapping for outdoor scenes
