@@ -3,8 +3,8 @@ use crate::blocks::BlockId;
 
 // Chunk configuration - 16x16x16 cubic chunks
 pub const CHUNK_SIZE: usize = 16;
-pub const VIEW_DISTANCE: i32 = 8; // Render distance in chunks (horizontal)
-pub const VIEW_DISTANCE_VERTICAL: i32 = 4; // Render distance in chunks (vertical)
+pub const VIEW_DISTANCE: i32 = 10; // Render distance in chunks (horizontal) - 160 blocks
+pub const VIEW_DISTANCE_VERTICAL: i32 = 5; // Render distance in chunks (vertical)
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Component)]
 pub struct ChunkCoord {
@@ -42,6 +42,7 @@ impl ChunkCoord {
     }
 
     /// Manhattan distance (useful for chunk loading priority)
+    #[allow(dead_code)]
     pub fn manhattan_distance(&self, other: &ChunkCoord) -> i32 {
         (self.x - other.x).abs() + (self.y - other.y).abs() + (self.z - other.z).abs()
     }
@@ -51,6 +52,7 @@ impl ChunkCoord {
 pub const MAX_LIGHT_LEVEL: u8 = 15;
 
 /// Boundary light values for a chunk (used to detect if neighbors need updating)
+#[allow(dead_code)]
 pub struct BoundaryLight {
     pub neg_x: [[u8; CHUNK_SIZE]; CHUNK_SIZE], // indexed by [y][z]
     pub pos_x: [[u8; CHUNK_SIZE]; CHUNK_SIZE],
@@ -60,6 +62,7 @@ pub struct BoundaryLight {
     pub pos_z: [[u8; CHUNK_SIZE]; CHUNK_SIZE],
 }
 
+#[allow(dead_code)]
 impl BoundaryLight {
     /// Check if any boundary light value could propagate to the neighbor
     /// (i.e., our boundary value - 1 > neighbor's boundary value)
@@ -138,6 +141,7 @@ impl BoundaryLight {
 }
 
 /// Which face of a chunk
+#[allow(dead_code)]
 #[derive(Clone, Copy)]
 pub enum ChunkFace {
     NegX, PosX, NegY, PosY, NegZ, PosZ,
@@ -309,6 +313,7 @@ impl Chunk {
 
     /// Get the light values at the boundary faces of this chunk
     /// Returns (neg_x, pos_x, neg_y, pos_y, neg_z, pos_z) arrays
+    #[allow(dead_code)]
     pub fn get_boundary_light(&self) -> BoundaryLight {
         let mut neg_x = [[0u8; CHUNK_SIZE]; CHUNK_SIZE]; // y, z
         let mut pos_x = [[0u8; CHUNK_SIZE]; CHUNK_SIZE];
@@ -403,6 +408,7 @@ impl Chunk {
     }
 
     /// Check if a block face should be rendered (neighbor is transparent/air)
+    #[allow(dead_code)]
     pub fn should_render_face(&self, x: usize, y: usize, z: usize, dx: i32, dy: i32, dz: i32) -> bool {
         let nx = x as i32 + dx;
         let ny = y as i32 + dy;
@@ -420,6 +426,7 @@ impl Chunk {
     }
 
     /// Get the height of the top non-air block at this x/z position (for camera collision)
+    #[allow(dead_code)]
     pub fn get_height_at(&self, x: usize, z: usize) -> f32 {
         // Search from top to bottom
         for y in (0..CHUNK_SIZE).rev() {

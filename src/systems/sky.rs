@@ -1,18 +1,13 @@
 use bevy::prelude::*;
 use bevy::pbr::StandardMaterial;
 use crate::components::CameraController;
-use crate::components::{Skybox, NightSkybox};
-use crate::components::Sun;
+use crate::components::{Skybox, NightSkybox, Sun, Moon};
 use crate::world::{ChunkManager, ChunkCoord, MAX_LIGHT_LEVEL};
 use crate::systems::NeedsRemesh;
 
 /// Maximum chunk distance (in chunks) to remesh during sky light updates
 /// Chunks beyond this distance will be remeshed lazily when they come into view
 const SKY_LIGHT_REMESH_DISTANCE: i32 = 4;
-
-/// Moon component marker
-#[derive(Component)]
-pub struct Moon;
 
 /// Time of day resource (0.0 = midnight, 0.5 = noon, 1.0 = midnight again)
 /// A full day cycle takes DAY_LENGTH_SECONDS real-world seconds
@@ -74,6 +69,7 @@ impl TimeOfDay {
 
     /// Get sun altitude as a normalized value (-1 to 1)
     /// -1 = directly below, 0 = horizon, 1 = directly overhead
+    #[allow(dead_code)]
     pub fn sun_altitude(&self) -> f32 {
         let angle = (self.time - 0.25) * 2.0 * std::f32::consts::PI;
         angle.sin()

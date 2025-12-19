@@ -9,6 +9,7 @@ pub struct VoxelMaterial {
     pub data: Vec4,
 }
 
+#[allow(dead_code)]
 impl VoxelMaterial {
     pub fn new(time: f32, brightness: f32) -> Self {
         Self {

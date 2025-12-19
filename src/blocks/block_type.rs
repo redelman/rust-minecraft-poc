@@ -1,5 +1,3 @@
-use bevy::prelude::*;
-
 /// Represents which face of a block
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum BlockFace {
@@ -12,6 +10,7 @@ pub enum BlockFace {
 }
 
 /// Properties of a block type
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct BlockProperties {
     /// Unique identifier for this block type (e.g., "core:stone", "mymod:custom_block")
@@ -42,6 +41,7 @@ pub struct FaceTints {
     pub west: Option<(f32, f32, f32)>,
 }
 
+#[allow(dead_code)]
 impl FaceTints {
     /// No tint on any face
     pub fn none() -> Self {
@@ -132,6 +132,7 @@ pub struct BlockTextures {
     pub side_overlay: Option<AtlasCoord>,
 }
 
+#[allow(dead_code)]
 impl BlockTextures {
     /// Create a texture set where all faces use the same texture
     pub fn uniform(coord: AtlasCoord) -> Self {
@@ -192,6 +193,7 @@ pub struct BlockType {
     pub properties: BlockProperties,
 }
 
+#[allow(dead_code)]
 impl BlockType {
     pub fn new(properties: BlockProperties) -> Self {
         Self { properties }
@@ -221,6 +223,7 @@ pub struct BlockTypeBuilder {
     tint_colors: FaceTints,
 }
 
+#[allow(dead_code)]
 impl BlockTypeBuilder {
     pub fn solid(mut self, is_solid: bool) -> Self {
         self.is_solid = is_solid;

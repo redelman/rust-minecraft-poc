@@ -299,6 +299,7 @@ fn check_aabb_collision(
     false // No collision
 }
 
+#[allow(dead_code)]
 fn get_terrain_height_at(
     pos: Vec3,
     chunk_manager: &ChunkManager,

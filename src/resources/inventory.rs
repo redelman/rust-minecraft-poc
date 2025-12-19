@@ -2,6 +2,7 @@ use bevy::prelude::*;
 use crate::blocks::BlockId;
 
 /// Unique identifier for non-block items
+#[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum ItemId {
     Torch,
@@ -17,6 +18,7 @@ impl ItemId {
 }
 
 /// Represents something that can be held in the inventory
+#[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum HotbarItem {
     Block(BlockId),
@@ -38,6 +40,7 @@ impl Default for PlayerInventory {
     }
 }
 
+#[allow(dead_code)]
 impl PlayerInventory {
     pub fn new_with_blocks(bedrock: BlockId, stone: BlockId, dirt: BlockId, grass: BlockId) -> Self {
         let mut hotbar: [Option<HotbarItem>; 9] = [None; 9];

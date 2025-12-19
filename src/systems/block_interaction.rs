@@ -6,7 +6,6 @@ use std::collections::HashMap;
 use crate::components::CameraController;
 use crate::resources::{ChunkManager, PlayerInventory, GameState};
 use crate::world::{Chunk, ChunkCoord, CHUNK_SIZE, MAX_LIGHT_LEVEL};
-use crate::world::mesh_gen::{create_chunk_mesh_with_neighbors, create_chunk_mesh_with_sky_light, NeighborChunks};
 use crate::systems::{SkyLightLevel, ChunkSkyLight};
 use crate::blocks::{BlockId, BlockRegistry};
 use crate::rendering::terrain_material::TerrainMaterial;

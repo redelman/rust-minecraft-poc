@@ -10,6 +10,7 @@ pub struct IconsTextureHandle {
 }
 
 /// Manages texture atlases for different mods and resource packs
+#[allow(dead_code)]
 #[derive(Resource)]
 pub struct AssetManager {
     /// Texture atlases loaded for each mod (mod_id -> texture handle)
@@ -27,6 +28,7 @@ impl Default for AssetManager {
     }
 }
 
+#[allow(dead_code)]
 impl AssetManager {
     pub fn new() -> Self {
         Self::default()

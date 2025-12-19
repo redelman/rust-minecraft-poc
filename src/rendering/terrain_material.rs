@@ -18,6 +18,7 @@ pub struct TerrainMaterial {
     pub base_texture: Handle<Image>,
 }
 
+#[allow(dead_code)]
 impl TerrainMaterial {
     pub fn new(base_texture: Handle<Image>) -> Self {
         Self {

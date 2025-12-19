@@ -171,7 +171,7 @@ fn point_in_quad(
 /// Compute UV coordinates for a point inside a quadrilateral
 fn compute_quad_uv(
     x: f32, y: f32,
-    v0: (f32, f32), v1: (f32, f32), v2: (f32, f32), v3: (f32, f32),
+    v0: (f32, f32), v1: (f32, f32), _v2: (f32, f32), v3: (f32, f32),
 ) -> (f32, f32) {
     // Use inverse bilinear interpolation
     // For a quad defined by v0, v1, v2, v3 (in order), find u,v such that:

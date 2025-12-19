@@ -3,9 +3,10 @@ use bevy::render::mesh::{Indices, PrimitiveTopology};
 use bevy::render::render_asset::RenderAssetUsages;
 
 use super::chunk::{Chunk, CHUNK_SIZE, MAX_LIGHT_LEVEL};
-use crate::blocks::{BlockRegistry, BlockFace, BlockId};
+use crate::blocks::{BlockRegistry, BlockFace};
 
 /// Neighbor chunks for face culling (6 directions: -X, +X, -Y, +Y, -Z, +Z)
+#[allow(dead_code)]
 pub struct NeighborChunks<'a> {
     pub neg_x: Option<&'a Chunk>,  // West
     pub pos_x: Option<&'a Chunk>,  // East
@@ -102,6 +103,7 @@ const BRIGHTNESS_EAST: f32 = 0.6;      // East (+X)
 const BRIGHTNESS_WEST: f32 = 0.6;      // West (-X)
 
 /// Small offset for overlay quads to prevent z-fighting
+#[allow(dead_code)]
 const OVERLAY_OFFSET: f32 = 0.001;
 
 /// Get the light level at a position, using neighbor chunks for boundary lookups
@@ -217,6 +219,7 @@ pub fn create_chunk_mesh_with_neighbors(chunk: &Chunk, block_registry: &BlockReg
 
 /// Get the maximum light level from all 6 adjacent blocks
 /// This gives a block its "ambient" light level for all faces
+#[allow(dead_code)]
 fn get_block_light(chunk: &Chunk, neighbors: &NeighborChunks, x: usize, y: usize, z: usize) -> u8 {
     let xi = x as i32;
     let yi = y as i32;

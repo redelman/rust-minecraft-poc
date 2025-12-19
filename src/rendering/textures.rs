@@ -2,6 +2,7 @@ use bevy::prelude::*;
 use bevy::render::render_asset::RenderAssetUsages;
 use noise::{NoiseFn, Perlin};
 
+#[allow(dead_code)]
 pub fn create_noise_texture(images: &mut ResMut<Assets<Image>>) -> Handle<Image> {
     let size = 256;
     let perlin = Perlin::new(42);

@@ -10,3 +10,10 @@ pub struct NightSkybox;
 
 #[derive(Component)]
 pub struct Sun;
+
+#[derive(Component)]
+pub struct Moon;
+
+/// Marker for the sun's directional light
+#[derive(Component)]
+pub struct SunLight;

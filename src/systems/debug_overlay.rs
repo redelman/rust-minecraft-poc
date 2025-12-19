@@ -4,6 +4,7 @@ use crate::components::{CameraController, DebugOverlay};
 use crate::blocks::{BlockRegistry, BlockId};
 use crate::world::{Chunk, ChunkCoord, CHUNK_SIZE};
 use crate::systems::{TimeOfDay, SkyLightLevel};
+use crate::resources::FpsStats;
 
 /// System to update debug overlay with FPS, position, and block info
 pub fn update_debug_overlay(
@@ -14,6 +15,7 @@ pub fn update_debug_overlay(
     block_registry: Res<BlockRegistry>,
     time_of_day: Res<TimeOfDay>,
     sky_light: Res<SkyLightLevel>,
+    mut fps_stats: ResMut<FpsStats>,
 ) {
     let Ok((camera_transform, controller)) = camera_query.get_single() else {
         return;
@@ -31,10 +33,21 @@ pub fn update_debug_overlay(
     let camera_pos = camera_transform.translation;
     let mut debug_text = String::new();
 
-    // Add FPS
+    // Add FPS with min/avg/max tracking
     if let Some(fps_diagnostic) = diagnostics.get(&FrameTimeDiagnosticsPlugin::FPS) {
         if let Some(fps_smoothed) = fps_diagnostic.smoothed() {
-            debug_text.push_str(&format!("FPS: {:.0}\n", fps_smoothed));
+            // Update stats
+            fps_stats.update(fps_smoothed);
+
+            debug_text.push_str(&format!("FPS: {:.0}", fps_smoothed));
+
+            if fps_stats.initialized() {
+                if let Some(avg) = fps_stats.average() {
+                    debug_text.push_str(&format!(" (min: {:.0}, avg: {:.0}, max: {:.0})",
+                        fps_stats.min_fps, avg, fps_stats.max_fps));
+                }
+            }
+            debug_text.push('\n');
         }
     }
 

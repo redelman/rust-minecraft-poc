@@ -20,7 +20,7 @@ use bevy::text::{TextColor, TextFont};
 use components::*;
 use mods::ModPlugin;
 use rendering::*;
-use resources::{GameState, ChunkBorderState, PlayerInventory, PlayerStats};
+use resources::{GameState, ChunkBorderState, PlayerInventory, PlayerStats, FpsStats};
 use assets::IconsTextureHandle;
 use systems::*;
 use ui::{setup_pause_menu, setup_hotbar, setup_survival_bars};
@@ -38,6 +38,7 @@ fn main() {
                     primary_window: Some(Window {
                         title: "VoxelCraft".to_string(),
                         resolution: (1280.0, 720.0).into(),
+                        present_mode: bevy::window::PresentMode::AutoNoVsync,
                         ..default()
                     }),
                     ..default()
@@ -63,6 +64,7 @@ fn main() {
         .init_resource::<SkyLightLevel>()
         .init_resource::<systems::LightingOverlayState>()
         .init_resource::<PlayerStats>()
+        .init_resource::<FpsStats>()
         .init_resource::<IconsTextureHandle>()
         .add_systems(Startup, (setup, setup_cursor_grab, setup_pause_menu, setup_hotbar, setup_survival_bars, setup_terrain, init_inventory).chain())
         // Input systems

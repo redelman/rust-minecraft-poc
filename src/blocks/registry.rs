@@ -1,6 +1,5 @@
 use bevy::prelude::*;
 use std::collections::HashMap;
-use std::sync::{Arc, RwLock};
 use super::block_type::BlockType;
 
 /// Numeric ID for a block type (0 is always air)
@@ -48,6 +47,7 @@ impl Default for BlockRegistry {
     }
 }
 
+#[allow(dead_code)]
 impl BlockRegistry {
     pub fn new() -> Self {
         Self::default()

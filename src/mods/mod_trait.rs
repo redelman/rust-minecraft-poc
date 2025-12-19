@@ -1,6 +1,7 @@
 use crate::blocks::BlockRegistry;
 
 /// Trait that all mods must implement
+#[allow(dead_code)]
 pub trait GameMod: Send + Sync {
     /// Unique identifier for this mod (e.g., "core", "mymod")
     fn id(&self) -> &str;

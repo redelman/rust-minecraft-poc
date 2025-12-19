@@ -38,9 +38,8 @@ pub fn update_block_highlight(
             ..default()
         });
 
-        // Offset the highlight to center it on the block
-        // Blocks are at integer positions, but the mesh is 0-1, so add 0.5 offset
-        let highlight_pos = hit_pos + Vec3::new(0.5, 0.5, 0.5);
+        // Blocks use 0-to-1 coordinates, highlight mesh matches this
+        let highlight_pos = hit_pos;
 
         commands.spawn((
             Mesh3d(mesh_handle),
@@ -96,19 +95,21 @@ fn create_block_highlight_mesh() -> Mesh {
     use bevy::render::mesh::{Indices, PrimitiveTopology};
     use bevy::render::render_asset::RenderAssetUsages;
 
-    // Create a wireframe box centered at origin, slightly larger than a block
-    let offset = 0.505; // Half block size + small offset
+    // Create a wireframe box using 0-to-1 coordinates (matching block convention)
+    // Slightly larger than a block to avoid z-fighting
+    let min = -0.005;
+    let max = 1.005;
     let positions = vec![
         // Bottom corners
-        [-offset, -offset, -offset],
-        [offset, -offset, -offset],
-        [offset, -offset, offset],
-        [-offset, -offset, offset],
+        [min, min, min],
+        [max, min, min],
+        [max, min, max],
+        [min, min, max],
         // Top corners
-        [-offset, offset, -offset],
-        [offset, offset, -offset],
-        [offset, offset, offset],
-        [-offset, offset, offset],
+        [min, max, min],
+        [max, max, min],
+        [max, max, max],
+        [min, max, max],
     ];
 
     let indices: Vec<u32> = vec![
