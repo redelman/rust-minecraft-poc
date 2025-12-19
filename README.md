@@ -8,6 +8,17 @@
 
 A Minecraft-inspired voxel game built with Rust and Bevy ECS, featuring physically-based rendering and a comprehensive plugin system for modding.
 
+## Screenshots
+
+![Sunrise over voxel terrain](screenshots/sunrise.png)
+*Early morning with the moon setting and procedurally generated terrain*
+
+![Underground tunnel](screenshots/tunnel.png)
+*Mining tunnel with per-face lighting and block highlighting*
+
+![Night sky](screenshots/night.png)
+*Night time with stars and moon*
+
 ## Texture Setup (Required)
 
 This project uses Minecraft's classic texture atlas formats. You need to provide your own textures:
